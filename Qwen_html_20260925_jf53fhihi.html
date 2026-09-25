@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="1.º B - Feria de Emprendedores E.E.S.O.P.I. 8075 - Sancti Spíritu, Santa Fe. 6 de noviembre de 2026">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>1.º B | Feria de Emprendedores - E.E.S.O.P.I. 8075</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --color-bg-primary: #0f0f1a;
+            --color-bg-secondary: #1a1a2e;
+            --color-bg-card: #16213e;
+            --color-accent: #ffd700;
+            --color-accent-warm: #ffb347;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e0e0e0;
+            --color-text-muted: #a0a0a0;
+            --color-border: #2a2a4a;
+            --color-success: #4ade80;
+            --color-whatsapp: #25d366;
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.15);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient background effects */
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .ambient-light::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 179, 71, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .ambient-light::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--color-accent);
+        }
+
+        .nav-logo-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .nav-logo-text span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: none;
+        }
+
+        .nav-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--color-bg-secondary);
+            padding: 5rem 1.5rem 2rem;
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--color-border);
+            overflow-y: auto;
+        }
+
+        .nav-links.active {
+            right: 0;
+        }
+
+        .nav-links a {
+            display: block;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+            padding-left: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1rem 3rem;
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1496337589254-7e19d01cec44?w=800&q=80') center/cover;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 600px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-warm) 100%);
+            color: var(--color-bg-primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title .highlight {
+            color: var(--color-accent);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-date {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .hero-date .day {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            display: block;
+            line-height: 1;
+        }
+
+        .hero-date .month {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0.5rem 0;
+        }
+
+        .hero-date .year {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-date .time {
+            color: var(--color-accent-warm);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .hero-location {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-warm) 100%);
+            color: var(--color-bg-primary);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+        }
+
+        .btn-whatsapp {
+            background: var(--color-whatsapp);
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: var(--color-bg-secondary);
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .countdown-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+
+        .countdown-item {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 0.5rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .countdown-value {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            font-weight: 700;
+            color: var(--color-accent);
+            display: block;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        .countdown-message {
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            display: none;
+        }
+
+        .countdown-message.active {
+            display: block;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 1rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 6vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: var(--color-text-primary);
+        }
+
+        .section-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-accent {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-warm) 100%);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--color-bg-secondary);
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Stands Section */
+        .stands-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .stand-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .stand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--color-accent);
+        }
+
+        .stand-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .stand-content {
+            padding: 1.5rem;
+        }
+
+        .stand-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+
+        .stand-description {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .stand-products {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Products Section */
+        .products {
+            background: var(--color-bg-secondary);
+        }
+
+        .search-filter-container {
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            background: var(--color-bg-secondary);
+            padding: 1rem 0;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            background: var(--color-bg-card);
+            color: var(--color-text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+        }
+
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-card);
+            color: var(--color-text-secondary);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition-smooth);
+            font-family: inherit;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            border-color: var(--color-accent);
+        }
+
+        .sort-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sort-label {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .sort-select {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            background: var(--color-bg-card);
+            color: var(--color-text-primary);
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 1.25rem;
+        }
+
+        .product-stand {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--color-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-primary);
+        }
+
+        .product-description {
+            color: var(--color-text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .product-price.consult {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-reserve {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Save the Date Section */
+        .save-date {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 179, 71, 0.05) 100%);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .save-date-title {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .save-date-visual {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--color-bg-card);
+            border: 2px solid var(--color-accent);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .save-date-day {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .save-date-month {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 0.5rem 0;
+        }
+
+        .save-date-year {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .save-date-time {
+            color: var(--color-accent-warm);
+            font-weight: 500;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+            width: 100%;
+        }
+
+        /* QR Section */
+        .qr-section {
+            text-align: center;
+            background: var(--color-bg-secondary);
+        }
+
+        .qr-container {
+            max-width: 300px;
+            margin: 2rem auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .qr-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-bg-primary);
+            font-size: 0.9rem;
+            border: 2px dashed var(--color-border);
+        }
+
+        .qr-text {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--color-bg-card);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-text {
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-primary);
+            border-top: 1px solid var(--color-border);
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-school {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-date {
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .footer-copy {
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--color-bg-secondary);
+            width: 100%;
+            max-height: 90vh;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            overflow: hidden;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            background: var(--color-bg-card);
+            color: var(--color-text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .product-summary {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-summary-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-summary-stand {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--color-accent);
+            color: var(--color-bg-primary);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .cart-badge:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-badge.hidden {
+            display: none;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--color-whatsapp);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            cursor: pointer;
+            z-index: 999;
+            transition: var(--transition-smooth);
+            border: none;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .stands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-links {
+                position: static;
+                width: auto;
+                height: auto;
+                padding: 0;
+                background: transparent;
+                border: none;
+                display: flex;
+                gap: 2rem;
+            }
+
+            .nav-links a {
+                border: none;
+                padding: 0;
+                font-size: 0.9rem;
+            }
+
+            .nav-links a:hover {
+                padding-left: 0;
+            }
+
+            .hero {
+                padding: 8rem 2rem 4rem;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .stands-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .modal {
+                align-items: center;
+            }
+
+            .modal-content {
+                max-width: 500px;
+                border-radius: var(--radius-xl);
+                max-height: 80vh;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stands-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .hero-buttons {
+                gap: 1.5rem;
+            }
+
+            .btn {
+                padding: 1.25rem 2.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Light Effects -->
+    <div class="ambient-light"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://instagram.faep16-2.fna.fbcdn.net/v/t51.2885-19/330558050_5818872608149813_6695751749215847772_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.faep16-2.fna.fbcdn.net&_nc_cat=101&_nc_oc=Q6cZ2gHDIDvNTUFlOcAeEW2RtXTtwRqlxIKITZJnxWGqALMCSQTNWWtBHQEW9TYvSq2XMLM&_nc_ohc=QsJjxf6YqUQQ7kNvwEmb3lg&_nc_gid=R9kt3JFO7WnUvkxCHVKvTw&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AQKOkBP9gt-t-rnR9nOXByXNccI0Qrm3GTFvbNwO2RmKPw&oe=6ABCBD72&_nc_sid=7a9f4b" alt="E.E.S.O.P.I. 8075">
+                <div class="nav-logo-text">
+                    1.º B
+                    <span>Feria de Emprendedores</span>
+                </div>
+            </div>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#inicio">Inicio</a>
+                <a href="#stands">Stands</a>
+                <a href="#productos">Productos</a>
+                <a href="#feria">La Feria</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i> Feria de Emprendedores 2026
+            </div>
+            
+            <h1 class="hero-title">
+                1.º B
+                <span class="highlight">Feria de Emprendedores</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Conocé todo lo que creamos para nuestra feria
+            </p>
+
+            <div class="hero-date">
+                <span class="day">6</span>
+                <span class="month">Noviembre</span>
+                <span class="year">2026</span>
+                <div class="time">
+                    <i class="fas fa-moon"></i> Por la noche
+                </div>
+            </div>
+
+            <div class="hero-location">
+                <i class="fas fa-map-marker-alt"></i> E.E.S.O.P.I. 8075 — Sancti Spíritu, Santa Fe
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#stands" class="btn btn-primary">
+                    <i class="fas fa-store"></i> Ver Stands
+                </a>
+                <a href="#productos" class="btn btn-secondary">
+                    <i class="fas fa-box"></i> Ver Productos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <h3 class="countdown-title">Falta poco para la feria</h3>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+            <div class="countdown-message" id="countdownMessage">
+                <i class="fas fa-party-horn"></i> ¡HOY ES LA FERIA!
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Somos 1.º B</h2>
+                <div class="section-accent"></div>
+            </div>
+            
+            <div class="about-content reveal">
+                <p class="about-text">
+                    En esta Feria de Emprendedores, distintos grupos de 1.º B presentan sus productos y creaciones. 
+                    Cuatro stands únicos te esperan con productos artesanales hechos con dedicación y creatividad.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stands Section -->
+    <section class="stands" id="stands">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Nuestros Stands</h2>
+                <div class="section-accent"></div>
+                <p class="section-subtitle">Conocé los cuatro stands que participarán de la feria</p>
+            </div>
+
+            <div class="stands-grid">
+                <!-- Stand 1: Aromas y Velas -->
+                <div class="stand-card reveal">
+                    <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80" alt="Aromas y Velas" class="stand-image">
+                    <div class="stand-content">
+                        <h3 class="stand-name">Aromas y Velas</h3>
+                        <p class="stand-description">Velas artesanales y productos aromáticos hechos a mano con materiales naturales.</p>
+                        <p class="stand-products"><i class="fas fa-box"></i> 8 productos disponibles</p>
+                        <button class="btn btn-primary btn-full" onclick="filterByStand('Aromas y Velas')">
+                            <i class="fas fa-eye"></i> Ver Productos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stand 2: Pulseras -->
+                <div class="stand-card reveal">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Pulseras" class="stand-image">
+                    <div class="stand-content">
+                        <h3 class="stand-name">Pulseras</h3>
+                        <p class="stand-description">Pulseras artesanales únicas con diferentes diseños y materiales.</p>
+                        <p class="stand-products"><i class="fas fa-box"></i> 12 productos disponibles</p>
+                        <button class="btn btn-primary btn-full" onclick="filterByStand('Pulseras')">
+                            <i class="fas fa-eye"></i> Ver Productos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stand 3: Maderas -->
+                <div class="stand-card reveal">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="Maderas" class="stand-image">
+                    <div class="stand-content">
+                        <h3 class="stand-name">Maderas</h3>
+                        <p class="stand-description">Repisas, estantes y tablas de madera de pino barnizadas.</p>
+                        <p class="stand-products"><i class="fas fa-box"></i> 6 productos disponibles</p>
+                        <button class="btn btn-primary btn-full" onclick="filterByStand('Maderas')">
+                            <i class="fas fa-eye"></i> Ver Productos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stand 4: Flores Ensueño -->
+                <div class="stand-card reveal">
+                    <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=80" alt="Flores Ensueño" class="stand-image">
+                    <div class="stand-content">
+                        <h3 class="stand-name">Flores Ensueño</h3>
+                        <p class="stand-description">Arreglos florales y productos decorativos con flores naturales y secas.</p>
+                        <p class="stand-products"><i class="fas fa-box"></i> 10 productos disponibles</p>
+                        <button class="btn btn-primary btn-full" onclick="filterByStand('Flores Ensueño')">
+                            <i class="fas fa-eye"></i> Ver Productos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Productos</h2>
+                <div class="section-accent"></div>
+                <p class="section-subtitle">Explorá todos nuestros productos y realizá tu reserva</p>
+            </div>
+
+            <div class="search-filter-container reveal">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar productos..." aria-label="Buscar productos">
+                </div>
+
+                <div class="filters" id="filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="Aromas y Velas">Aromas y Velas</button>
+                    <button class="filter-btn" data-filter="Pulseras">Pulseras</button>
+                    <button class="filter-btn" data-filter="Maderas">Maderas</button>
+                    <button class="filter-btn" data-filter="Flores Ensueño">Flores Ensueño</button>
+                </div>
+
+                <div class="sort-container">
+                    <span class="sort-label">Ordenar por:</span>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="featured">Destacados</option>
+                        <option value="name-asc">Nombre A-Z</option>
+                        <option value="name-desc">Nombre Z-A</option>
+                        <option value="price-asc">Precio menor a mayor</option>
+                        <option value="price-desc">Precio mayor a menor</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+
+            <div class="no-products" id="noProducts" style="display: none;">
+                <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p>No se encontraron productos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Save the Date Section -->
+    <section class="save-date" id="fecha">
+        <div class="container">
+            <div class="save-date-title reveal">Guardá la fecha</div>
+            <div class="save-date-visual reveal">
+                <div class="save-date-day">6</div>
+                <div class="save-date-month">Noviembre</div>
+                <div class="save-date-year">2026</div>
+                <div class="save-date-time">
+                    <i class="fas fa-moon"></i> Por la noche
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fair Info Section -->
+    <section class="about" id="feria">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Sobre la Feria</h2>
+                <div class="section-accent"></div>
+            </div>
+
+            <div class="about-content reveal">
+                <div style="background: var(--color-bg-card); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: 2rem;">
+                    <h3 style="color: var(--color-accent); margin-bottom: 1rem; font-size: 1.3rem;">
+                        <i class="fas fa-calendar-alt"></i> Feria de Emprendedores
+                    </h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+                        <strong>Fecha:</strong> 6 de noviembre de 2026
+                    </p>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+                        <strong>Horario:</strong> Durante la noche
+                    </p>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+                        <strong>Lugar:</strong> E.E.S.O.P.I. 8075
+                    </p>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+                        <strong>Localidad:</strong> Sancti Spíritu, Santa Fe
+                    </p>
+                    <p style="color: var(--color-text-primary); font-size: 1.1rem; font-weight: 500;">
+                        <i class="fas fa-info-circle"></i> Reservá tu producto y retiralo en la feria
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Section -->
+    <section class="qr-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title"><i class="fas fa-qrcode"></i> Escaneá y conocé lo que vende 1.º B</h2>
+                <div class="section-accent"></div>
+            </div>
+
+            <div class="qr-container reveal">
+                <div class="qr-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-qrcode" style="font-size: 4rem; color: var(--color-bg-primary); margin-bottom: 0.5rem;"></i>
+                        <div>Código QR</div>
+                    </div>
+                </div>
+                <p class="qr-text">Próximamente disponible</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">¿Querés reservar?</h2>
+                <div class="section-accent"></div>
+            </div>
+
+            <div class="contact-content reveal">
+                <p class="contact-text">
+                    Elegí tus productos y realizá tu reserva para retirarlos en la Feria de Emprendedores.
+                </p>
+
+                <div class="contact-buttons">
+                    <a href="#productos" class="btn btn-primary btn-full">
+                        <i class="fas fa-shopping-cart"></i> Reservar Ahora
+                    </a>
+                    <a href="https://wa.me/COLOCAR_NUMERO_AQUI" class="btn btn-whatsapp btn-full" id="whatsappBtn" style="display: none;">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <img src="https://instagram.faep16-2.fna.fbcdn.net/v/t51.2885-19/330558050_5818872608149813_6695751749215847772_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.faep16-2.fna.fbcdn.net&_nc_cat=101&_nc_oc=Q6cZ2gHDIDvNTUFlOcAeEW2RtXTtwRqlxIKITZJnxWGqALMCSQTNWWtBHQEW9TYvSq2XMLM&_nc_ohc=QsJjxf6YqUQQ7kNvwEmb3lg&_nc_gid=R9kt3JFO7WnUvkxCHVKvTw&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AQKOkBP9gt-t-rnR9nOXByXNccI0Qrm3GTFvbNwO2RmKPw&oe=6ABCBD72&_nc_sid=7a9f4b" alt="E.E.S.O.P.I. 8075" class="footer-logo">
+        
+        <h3 class="footer-title">1.º B — Feria de Emprendedores</h3>
+        <p class="footer-school">E.E.S.O.P.I. 8075 · Sancti Spíritu</p>
+        <p class="footer-date">6 de noviembre de 2026</p>
+        
+        <p class="footer-copy">
+            © 2026 1.º B - E.E.S.O.P.I. 8075. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <!-- Cart Badge -->
+    <button class="cart-badge hidden" id="cartBadge" onclick="showCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount">0</span>
+    </button>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/COLOCAR_NUMERO_AQUI" class="whatsapp-float" id="whatsappFloat" style="display: none;" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Reservation Modal -->
+    <div class="modal" id="reservationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Reservar Producto</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="product-summary" id="productSummary">
+                    <div class="product-summary-title" id="modalProductName">Nombre del producto</div>
+                    <div class="product-summary-stand" id="modalProductStand">Stand</div>
+                </div>
+
+                <form id="reservationForm">
+                    <input type="hidden" id="resProduct" name="product">
+                    <input type="hidden" id="resStand" name="stand">
+
+                    <div class="form-group">
+                        <label class="form-label" for="resQuantity">Cantidad *</label>
+                        <input type="number" class="form-input" id="resQuantity" name="quantity" min="1" value="1" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="resName">Nombre *</label>
+                            <input type="text" class="form-input" id="resName" name="name" required placeholder="Tu nombre">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="resContact">Medio de contacto *</label>
+                        <input type="tel" class="form-input" id="resContact" name="contact" required placeholder="Teléfono o email">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="resComment">Comentario</label>
+                        <textarea class="form-textarea" id="resComment" name="comment" placeholder="Mensaje adicional (opcional)"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-full" onclick="confirmReservation()">
+                    <i class="fab fa-whatsapp"></i> Confirmar Reserva
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Configuration
+        const CONFIG = {
+            FAIR_DATE: new Date('2026-11-06T20:00:00'), // Configurable - 8 PM as default
+            WHATSAPP_NUMBER: 'COLOCAR_NUMERO_AQUI', // Replace with actual number
+            CURRENCY: '$'
+        };
+
+        // Products Data
+        const products = [
+            // Aromas y Velas
+            {
+                id: 1,
+                stand: 'Aromas y Velas',
+                name: 'Vela Aromática Lavanda',
+                description: 'Vela artesanal de soja con esencia de lavanda natural. Duración aproximada 40 horas.',
+                price: 2500,
+                image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 2,
+                stand: 'Aromas y Velas',
+                name: 'Vela Aromática Vainilla',
+                description: 'Vela de cera natural con aroma a vainilla. Perfecta para ambientes cálidos.',
+                price: 2500,
+                image: 'https://images.unsplash.com/photo-1603006905003-be4218230d48?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 3,
+                stand: 'Aromas y Velas',
+                name: 'Set de Velas Pequenas',
+                description: 'Pack de 3 velas pequeñas con diferentes aromas. Ideal para regalar.',
+                price: 3500,
+                image: 'https://images.unsplash.com/photo-1570823635306-250abb06d4b3?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 4,
+                stand: 'Aromas y Velas',
+                name: 'Difusor de Aromas',
+                description: 'Difusor artesanal con varillas de rattan. Aroma duradero y natural.',
+                price: null,
+                image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 5,
+                stand: 'Aromas y Velas',
+                name: 'Vela Decorativa Grande',
+                description: 'Vela decorativa de gran tamaño. Ideal para centros de mesa.',
+                price: 4000,
+                image: 'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 6,
+                stand: 'Aromas y Velas',
+                name: 'Vela con Flores Secas',
+                description: 'Vela artesanal decorada con flores secas naturales. Única y especial.',
+                price: 3000,
+                image: 'https://images.unsplash.com/photo-1602523748500-185c9b4853c6?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 7,
+                stand: 'Aromas y Velas',
+                name: 'Portavelas de Madera',
+                description: 'Portavelas artesanal de madera con vela incluida.',
+                price: null,
+                image: 'https://images.unsplash.com/photo-1513506003011-3b03c80175e6?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 8,
+                stand: 'Aromas y Velas',
+                name: 'Velas Té Light Pack',
+                description: 'Pack de 10 velas té light con diferentes aromas.',
+                price: 1500,
+                image: 'https://images.unsplash.com/photo-1608181114410-db26d4a1d492?w=600&q=80',
+                available: true,
+                featured: false
+            },
+
+            // Pulseras
+            {
+                id: 9,
+                stand: 'Pulseras',
+                name: 'Pulsera Tejida Multicolor',
+                description: 'Pulsera artesanal tejida a mano con hilos de colores. Ajustable.',
+                price: 1200,
+                image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 10,
+                stand: 'Pulseras',
+                name: 'Pulsera de Cuentas Naturales',
+                description: 'Pulsera con cuentas de madera y piedras naturales.',
+                price: 1500,
+                image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 11,
+                stand: 'Pulseras',
+                name: 'Pulsera Trenzada Cuero',
+                description: 'Pulsera de cuero trenzado con cierre metálico. Unisex.',
+                price: 1800,
+                image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 12,
+                stand: 'Pulseras',
+                name: 'Pulsera Charmes',
+                description: 'Pulsera con charms colgantes. Diseño único y personalizado.',
+                price: 2000,
+                image: 'https://images.unsplash.com/photo-1602751584552-8ba420552259?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 13,
+                stand: 'Pulseras',
+                name: 'Pulsera Elástica Colores',
+                description: 'Pulsera elástica con cuentas de colores brillantes.',
+                price: 1000,
+                image: 'https://images.unsplash.com/photo-1535632000639-6a5e61e1a5b4?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 14,
+                stand: 'Pulseras',
+                name: 'Set Pulseras Amistad',
+                description: 'Pack de 2 pulseras de la amistad tejidas a mano.',
+                price: 2000,
+                image: 'https://images.unsplash.com/photo-1611085589629-ae8298685621?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 15,
+                stand: 'Pulseras',
+                name: 'Pulsera Macramé',
+                description: 'Pulsera de macramé con diseño geométrico. Hecha a mano.',
+                price: 1300,
+                image: 'https://images.unsplash.com/photo-1576053139778-3844d3b685c1?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 16,
+                stand: 'Pulseras',
+                name: 'Pulsera con Nombre',
+                description: 'Pulsera personalizada con nombre o iniciales. Consultar.',
+                price: null,
+                image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80',
+                available: true,
+                featured: true
+            },
+
+            // Maderas
+            {
+                id: 17,
+                stand: 'Maderas',
+                name: 'Repisa Pequeña Madera',
+                description: 'Repisa de madera de pino barnizada. 40cm x 15cm.',
+                price: 3500,
+                image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 18,
+                stand: 'Maderas',
+                name: 'Estante Mediano',
+                description: 'Estante de madera de pino con barniz. 60cm x 20cm. Ideal para libros.',
+                price: 5000,
+                image: 'https://images.unsplash.com/photo-1595429035839-c99c25881b5c?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 19,
+                stand: 'Maderas',
+                name: 'Tabla de Madera Decorativa',
+                description: 'Tabla de madera natural barnizada. Perfecta para decorar o servir.',
+                price: 2500,
+                image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 20,
+                stand: 'Maderas',
+                name: 'Repisa Grande',
+                description: 'Repisa grande de madera de pino. 80cm x 25cm. Resistente.',
+                price: 6500,
+                image: 'https://images.unsplash.com/photo-1595515106969-1ce29526a600?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 21,
+                stand: 'Maderas',
+                name: 'Estante con Soportes',
+                description: 'Estante de madera con soportes metálicos. Estilo industrial.',
+                price: null,
+                image: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 22,
+                stand: 'Maderas',
+                name: 'Set de 3 Repisas',
+                description: 'Pack de 3 repisas de diferentes tamaños. Madera de pino barnizada.',
+                price: 9000,
+                image: 'https://images.unsplash.com/photo-1594040291891-977e1e5dd2d0?w=600&q=80',
+                available: true,
+                featured: true
+            },
+
+            // Flores Ensueño
+            {
+                id: 23,
+                stand: 'Flores Ensueño',
+                name: 'Ramo de Flores Secas',
+                description: 'Ramo artesanal de flores secas naturales. Duradero y decorativo.',
+                price: 3000,
+                image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 24,
+                stand: 'Flores Ensueño',
+                name: 'Corona de Flores',
+                description: 'Corona decorativa de flores secas y elementos naturales.',
+                price: 3500,
+                image: 'https://images.unsplash.com/photo-1526047932273-341f2acee624?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 25,
+                stand: 'Flores Ensueño',
+                name: 'Arreglo Floral Pequeno',
+                description: 'Arreglo floral en maceta pequeña. Flores naturales y secas.',
+                price: 2500,
+                image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 26,
+                stand: 'Flores Ensueño',
+                name: 'Ramo de Lavanda',
+                description: 'Ramo de lavanda seca natural. Aroma duradero y relajante.',
+                price: 2000,
+                image: 'https://images.unsplash.com/photo-1498579397066-22750a3cb424?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 27,
+                stand: 'Flores Ensueño',
+                name: 'Centro de Mesa Floral',
+                description: 'Centro de mesa con flores secas y elementos decorativos.',
+                price: 4500,
+                image: 'https://images.unsplash.com/photo-1562690868-60bbe7293e48?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 28,
+                stand: 'Flores Ensueño',
+                name: 'Flores en Marco',
+                description: 'Arreglo floral preservado en marco decorativo. Arte único.',
+                price: null,
+                image: 'https://images.unsplash.com/photo-1518622358385-80a35678ced6?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 29,
+                stand: 'Flores Ensueño',
+                name: 'Ramo Mixto Colorido',
+                description: 'Ramo mixto de flores secas de colores vibrantes.',
+                price: 3200,
+                image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ee9?w=600&q=80',
+                available: true,
+                featured: true
+            },
+            {
+                id: 30,
+                stand: 'Flores Ensueño',
+                name: 'Porta Velas Floral',
+                description: 'Portavelas decorado con flores secas. Combina con velas.',
+                price: 2800,
+                image: 'https://images.unsplash.com/photo-1519378008460-69d064512564?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 31,
+                stand: 'Flores Ensueño',
+                name: 'Guirnalda de Flores',
+                description: 'Guirnalda decorativa de flores secas. Ideal para puertas.',
+                price: 3800,
+                image: 'https://images.unsplash.com/photo-1508607878382-81c7b221b657?w=600&q=80',
+                available: true,
+                featured: false
+            },
+            {
+                id: 32,
+                stand: 'Flores Ensueño',
+                name: 'Set Decoración Floral',
+                description: 'Set completo de decoración con flores. Incluye varios elementos.',
+                price: 7000,
+                image: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=600&q=80',
+                available: true,
+                featured: true
+            }
+        ];
+
+        // State
+        let currentFilter = 'all';
+        let currentSort = 'featured';
+        let searchTerm = '';
+        let cart = [];
+
+        // DOM Elements
+        const navbar = document.getElementById('navbar');
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        const overlay = document.getElementById('overlay');
+        const productsGrid = document.getElementById('productsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const filters = document.getElementById('filters');
+        const sortSelect = document.getElementById('sortSelect');
+        const noProducts = document.getElementById('noProducts');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartCount = document.getElementById('cartCount');
+        const reservationModal = document.getElementById('reservationModal');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            initCountdown();
+            initScrollAnimations();
+            initNavbar();
+            initFilters();
+            initSearch();
+            initSort();
+        });
+
+        // Countdown
+        function initCountdown() {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = CONFIG.FAIR_DATE - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').style.display = 'none';
+                document.getElementById('countdownMessage').classList.add('active');
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Navbar
+        function initNavbar() {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            });
+
+            overlay.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close menu on link click
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // Filters
+        function initFilters() {
+            filters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    filters.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFilter = e.target.dataset.filter;
+                    renderProducts();
+                }
+            });
+        }
+
+        function filterByStand(standName) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === standName);
+            });
+            currentFilter = standName;
+            renderProducts();
+            document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Search
+        function initSearch() {
+            searchInput.addEventListener('input', (e) => {
+                searchTerm = e.target.value.toLowerCase();
+                renderProducts();
+            });
+        }
+
+        // Sort
+        function initSort() {
+            sortSelect.addEventListener('change', (e) => {
+                currentSort = e.target.value;
+                renderProducts();
+            });
+        }
+
+        // Render Products
+        function renderProducts() {
+            let filtered = products.filter(product => {
+                const matchesFilter = currentFilter === 'all' || product.stand === currentFilter;
+                const matchesSearch = !searchTerm || 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.stand.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm);
+                return matchesFilter && matchesSearch;
+            });
+
+            // Sort
+            switch(currentSort) {
+                case 'name-asc':
+                    filtered.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name-desc':
+                    filtered.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'price-asc':
+                    filtered.sort((a, b) => (a.price || Infinity) - (b.price || Infinity));
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+                    break;
+                case 'featured':
+                default:
+                    filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+            }
+
+            if (filtered.length === 0) {
+                productsGrid.innerHTML = '';
+                noProducts.style.display = 'block';
+                return;
+            }
+
+            noProducts.style.display = 'none';
+            productsGrid.innerHTML = filtered.map(product => `
+                <div class="product-card reveal">
+                    <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
+                    <div class="product-content">
+                        <span class="product-stand">${product.stand}</span>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-footer">
+                            <div class="product-price ${product.price ? '' : 'consult'}">
+                                ${product.price ? CONFIG.CURRENCY + ' ' + product.price.toLocaleString('es-AR') : 'Consultar precio'}
+                            </div>
+                            <button class="btn btn-primary btn-reserve" onclick="openReservation(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Reservar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Re-initialize scroll animations for new elements
+            document.querySelectorAll('.product-card.reveal').forEach(el => {
+                el.classList.remove('active');
+                setTimeout(() => el.classList.add('active'), 100);
+            });
+        }
+
+        // Reservation Modal
+        function openReservation(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('resProduct').value = product.name;
+            document.getElementById('resStand').value = product.stand;
+            document.getElementById('modalProductName').textContent = product.name;
+            document.getElementById('modalProductStand').textContent = product.stand;
+            document.getElementById('reservationForm').reset();
+            
+            reservationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            reservationModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function confirmReservation() {
+            const form = document.getElementById('reservationForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const product = document.getElementById('resProduct').value;
+            const stand = document.getElementById('resStand').value;
+            const quantity = document.getElementById('resQuantity').value;
+            const name = document.getElementById('resName').value;
+            const contact = document.getElementById('resContact').value;
+            const comment = document.getElementById('resComment').value;
+
+            const message = `Hola, quiero reservar un producto de 1.º B para la Feria de Emprendedores.
+
+Stand: ${stand}
+Producto: ${product}
+Cantidad: ${quantity}
+Nombre: ${name}
+Contacto: ${contact}
+Comentario: ${comment || 'Sin comentario'}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            closeModal();
+
+            // Add to cart (local)
+            addToCart({ product, stand, quantity, name, contact, comment });
+        }
+
+        // Cart
+        function addToCart(item) {
+            cart.push(item);
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            if (cart.length > 0) {
+                cartCount.textContent = cart.length;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+        }
+
+        function showCart() {
+            if (cart.length === 0) return;
+            
+            let message = 'Hola, estas son mis reservas para la Feria de Emprendedores:\n\n';
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.product} (${item.stand}) - Cantidad: ${item.quantity}\n`;
+            });
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Close modal on outside click
+        reservationModal.addEventListener('click', (e) => {
+            if (e.target === reservationModal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && reservationModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Show WhatsApp button if number is configured
+        if (CONFIG.WHATSAPP_NUMBER !== 'COLOCAR_NUMERO_AQUI') {
+            document.getElementById('whatsappBtn').style.display = 'inline-flex';
+            document.getElementById('whatsappFloat').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
